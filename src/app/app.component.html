@@ -1,21 +1,121 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
+
+<!-- <mat-toolbar class="topbar" color="primary">
+    <mat-toolbar-row  style="text-align: center" class="shadow">
+      <span>Drowsy Driver</span>
+      
+      <span class="example-spacer"></span>
+      <button mat-button [matMenuTriggerFor]="menu">Options<mat-icon class="example-icon">more_vert</mat-icon></button>
+      <mat-menu #menu="matMenu" class="menu">
+        <button mat-menu-item (click)="btnSave()">Save</button>
+        <button mat-menu-item (click)="classes[selectedClass].usePoints = !classes[selectedClass].usePoints; pointsToggleChanged()">{{toggleLabel}}</button>
+      </mat-menu>
+    </mat-toolbar-row>
+  </mat-toolbar> -->
+
+
+  <div class="root">
+      <div id="divMainPage">
+      <div class="row" >
+      
+        <div class="col-12" id="main-panel">
+          <div class="info-card">
+              <div style="text-align:center">
+                  <button id="btnConnectToMuse" class="center-button" color="primary" mat-fab disableRipple="true"> Connect To Muse </button>
+                  <button id="btnStartDriving" class="center-button" style="background-color: #76d275; display: none" color="primary" mat-fab disableRipple="true"> Start Driving </button>
+                  <div id="divImgHappy" style="text-align: center; display: none;">
+                      <img style="width: 200px; height: 200px;" class="keyImg" src="../assets/Happy.png">
+                  </div>
+                  <div id="divImgSick" style="text-align: center; display: none; max-width: 256px; max-height: 256px">
+                      <img style="width: 200px; height: 200px;" class="keyImg" src="../assets/sick-face.png">
+                  </div>
+                  <div id="divImgNeutral" style="text-align: center; display: none; ">
+                      <img style="width: 200px; height: 200px;" class="keyImg" src="../assets/neutral-face.png">
+                  </div>
+                </div>
+                
+                <div style="text-align:center">
+                    <button id= "btnStopDriving" style="margin-top: 10px; width: 95%; min-width: 30px; font-size: 20px; display: none; background-color: #e53935" color="Red" mat-flat-button> Stop Driving </button>
+                 </div>
+          </div>
+          
+          </div>
+        </div>
+        <div class="row" width="100%">
+          <div style="display: block"  id="data-panel"  style=" display: none; width: 43%; height: 100%; padding-right: 1%">
+         
+          <div class="info-card" id = "values-panel" style="height:100%; padding-left: 0px;padding-right: 0px; margin-right: 5px; margin-left: 10px">
+                
+                <div class="demo-preview" style="height: 80%;padding-bottom: 0px;padding-top: 0px;">
+                    <div class="progress vertical">
+                      <div role="progressbar" style="height: 95%;" class="progress-bar" id="alpha"></div>
+                    </div>
+                    <div class="progress vertical">
+                      <div role="progressbar" style="height: 50%;" class="progress-bar progress-bar-secondary" id="beta"></div>
+                    </div>
+                     <div class="progress vertical">
+                      <div role="progressbar" style="height: 85%;" class="progress-bar progress-bar-default;" id="theta"></div>
+                    </div><br/>
+                    α&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;β&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;θ&nbsp;&nbsp;
+                </div>
+         </div>
+      </div>
+      <div style="display: block; width: 47%">
+        <div  id="others-panel" style=" display: none;  margin-bottom: 10px; width: 100% ">
+            <div class="info-card" id = "other-driver-panel" style="padding-bottom: 1%;padding-left: 10px;padding-right: 10px; width: 100%">
+                <div style="text-align:center">     
+                  <p>Other Drivers</p>
+                  <div  id="divOtherDriversDataImg" style="text-align: center; padding-top: 10px ">
+                      <img class="keyImg" style="width: 125px; height: 125px;" src="../assets/Happy.png">
+                  </div>
+                </div>
+            </div> 
+          </div>
+          <div id="wavedata-panel" class="info-card" style="margin-top: 10px;display: none;padding-left: 10px;padding-right: 10px; width: 100%" >
+              Alpha (Sleep) : <span id='alphaVal' > </span> <br>
+              Beta (Active): <span id='betaVal'> </span> <br>
+              Theta (Relaxed): <span id='thetaVal' > </span> 
+          </div>
+        </div>
+      </div>
+    </div>
+       
+        
+
+
+        <div id="divResultsPage" style="display:none">
+            <div class="col-12" id="resultPanel">
+                <div class="info-card" id = "graphpanel">
+                
+                  </div>
+                  <div style="text-align:center">
+                      <button id= "btnRestratDriving" style="margin-top: 10px; width: 95%; min-width: 30px; font-size: 20px; background-color: #76d275" color="Red" mat-flat-button> Restart Driving </button>
+                   </div>
+                </div>
+              </div>
+
+
+      </div>
+    
+<!-- <div style="text-align:center">
+
+  <button id="connect">Connect</button> <br/>
+  <button type="button" onclick="alert('Follow instructions')">Click The Red Button Above to connect to the MUSE! </button>b -->
+  <!-- <h2>The MUSE headset will be able to determine your level of engagement in 3 stages: </h2>
 <ul>
   <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
+    <font color="green">GREEN: You are engaged and focused on the road.</font>
   </li>
   <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
+    <font color="orange">ORANGE: Your brain waves indicate that you are not fully engaged.</font>
   </li>
   <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
+    <font color="red">RED: Your driving ability is currently impaired and unsafe.</font>
   </li>
 </ul>
+</div> -->
+
+
+
+
 
 <router-outlet></router-outlet>
