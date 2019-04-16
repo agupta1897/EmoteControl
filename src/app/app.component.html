@@ -1,7 +1,7 @@
 
 <!-- <mat-toolbar class="topbar" color="primary">
     <mat-toolbar-row  style="text-align: center" class="shadow">
-      <span>Drowsy Driver</span>
+      <span>EmoteControl</span>
       
       <span class="example-spacer"></span>
       <button mat-button [matMenuTriggerFor]="menu">Options<mat-icon class="example-icon">more_vert</mat-icon></button>
@@ -21,7 +21,7 @@
           <div class="info-card">
               <div style="text-align:center">
                   <button id="btnConnectToMuse" class="center-button" color="primary" mat-fab disableRipple="true"> Connect To Muse </button>
-                  <button id="btnStartDriving" class="center-button" style="background-color: #76d275; display: none" color="primary" mat-fab disableRipple="true"> Start Driving </button>
+                  <button id="btnStartDriving" class="center-button" style="background-color: #76d275; display: none" color="primary" mat-fab disableRipple="true"> Begin Emoting! </button>
                   <div id="divImgHappy" style="text-align: center; display: none;">
                       <img style="width: 200px; height: 200px;" class="keyImg" src="../assets/Happy.png">
                   </div>
@@ -34,7 +34,7 @@
                 </div>
                 
                 <div style="text-align:center">
-                    <button id= "btnStopDriving" style="margin-top: 10px; width: 95%; min-width: 30px; font-size: 20px; display: none; background-color: #e53935" color="Red" mat-flat-button> Stop Driving </button>
+                    <button id= "btnStopDriving" style="margin-top: 10px; width: 95%; min-width: 30px; font-size: 20px; display: none; background-color: #e53935" color="Red" mat-flat-button> You're mellow </button>
                  </div>
           </div>
           
@@ -61,14 +61,7 @@
       </div>
       <div style="display: block; width: 47%">
         <div  id="others-panel" style=" display: none;  margin-bottom: 10px; width: 100% ">
-            <div class="info-card" id = "other-driver-panel" style="padding-bottom: 1%;padding-left: 10px;padding-right: 10px; width: 100%">
-                <div style="text-align:center">     
-                  <p>Other Drivers</p>
-                  <div  id="divOtherDriversDataImg" style="text-align: center; padding-top: 10px ">
-                      <img class="keyImg" style="width: 125px; height: 125px;" src="../assets/Happy.png">
-                  </div>
-                </div>
-            </div> 
+           
           </div>
           <div id="wavedata-panel" class="info-card" style="margin-top: 10px;display: none;padding-left: 10px;padding-right: 10px; width: 100%" >
               Alpha (Sleep) : <span id='alphaVal' > </span> <br>
@@ -82,19 +75,6 @@
         
 
 
-        <div id="divResultsPage" style="display:none">
-            <div class="col-12" id="resultPanel">
-                <div class="info-card" id = "graphpanel">
-                
-                  </div>
-                  <div style="text-align:center">
-                      <button id= "btnRestratDriving" style="margin-top: 10px; width: 95%; min-width: 30px; font-size: 20px; background-color: #76d275" color="Red" mat-flat-button> Restart Driving </button>
-                   </div>
-                </div>
-              </div>
-
-
-      </div>
     
 <!-- <div style="text-align:center">
 
