@@ -1,6 +1,6 @@
 {
-  "name": "drowsyDriver",
-  "short_name": "drowsyDriver",
+  "name": "emoteControl",
+  "short_name": "emoteControl",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",

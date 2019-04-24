@@ -1,27 +1,52 @@
 import { Component, OnInit } from '@angular/core';
 import myClass from './../myClass';
 import eegLoad from './../eegLoad';
+import {FormControl, Validators} from '@angular/forms';
 import { HttpBackend } from '@angular/common/http';
 import * as Plotly from 'plotly.js/dist/plotly.js';
 import {Config, Data, Layout} from 'plotly.js/dist/plotly.js';
 
 declare var jquery: any;
 declare var $: any;
+
+
+export interface task {
+  emotion: string;
+  action: string;
+  intensity: string;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+
+
+
+export class AppComponent implements OnInit { 
       alpha: Array<number> = [];
       beta: Array<number> = [];
+      gamma: Array<number> = [];
+    //  delta: Array<number> = [];
       theta: Array<number> = [];
       time: Array<Date> = [];
       pos: number = 0;
       check: number = 0;
+      selectedEmotion: string = "";
+      selectedAction: string ="";
+      selectedIntensity:string="";
+      smsNumber:string="2054352352";
+      smsText:string= "I am very angry please help!"
+
+  tasks:task[] = [
+    {emotion: 'Angry', action: 'Text', intensity: 'High'},
+    {emotion: 'Distracted', action: 'Notify', intensity: 'Low'}
+  ]
+  
       ngOnInit(){
       let x = new myClass();
-        console.log( x.hello("World"))
+        console.log( x.hello("World"))     
       }
     
       ngAfterViewInit(){
@@ -30,6 +55,15 @@ export class AppComponent implements OnInit {
         document.getElementById("btnConnectToMuse").onclick = function(){ eeg.connect();
          document.getElementById("btnConnectToMuse").style.display = 'none';
          document.getElementById("btnStartDriving").style.display = 'inline';
+         console.log("Hello123 " + ref.selectedEmotion);
+         console.log(ref.smsNumber);
+         var a = <HTMLAnchorElement> document.getElementById('linkSMS'); 
+         a.href = "sms://+" + ref.smsNumber + "?body=" + ref.smsText;
+
+      }
+      document.getElementById("btnSave").onclick = function(){
+        var x: task = { emotion: ref.selectedEmotion , action: ref.selectedAction, intensity: ref.selectedIntensity };
+        ref.tasks.push( x);
       }
 
       var ref = this;
@@ -45,6 +79,13 @@ export class AppComponent implements OnInit {
         document.getElementById("wavedata-panel").style.display = 'block'; //Dont change
 
       }   
+
+      document.getElementById("btnMakeMusicPlay").onclick = function () {  
+        var audio = <HTMLVideoElement> document.getElementById("audio");
+        audio.play();
+      }
+
+
       
       document.getElementById("btnStopDriving").onclick = function () {  
         
@@ -126,21 +167,23 @@ export class AppComponent implements OnInit {
     }
     
       
-      title = 'drowsyDriver';
+      title = 'emoteControl';
       poll: Function = function(x){
         var ref = this;
         setInterval(function(){
-            var vals = [x.getAlpha(),x.getBeta(),x.getTheta()];
-            var sum = vals[0]+vals[2]+vals[1];
+            var vals = [x.getAlpha(),x.getBeta(), x.getGamma(), x.getTheta()];
+            var sum = vals[0]+vals[2]+vals[1]+vals[3];
             document.getElementById('alphaVal').innerText =  " " + Number((vals[0]).toFixed(3)).toString();
             document.getElementById('betaVal').innerText =  " " + Number((vals[1]).toFixed(3)).toString();
-            document.getElementById('thetaVal').innerText =  " " + Number((vals[2]).toFixed(3)).toString();
+            document.getElementById('gammaVal').innerText =  " " + Number((vals[2]).toFixed(3)).toString();
+            document.getElementById('thetaVal').innerText =  " " + Number((vals[3]).toFixed(3)).toString();
 
             
             if(sum == 0) sum =1;
             document.getElementById('alpha').style.height = (vals[0]*100/sum +'%').toString();
             document.getElementById('beta').style.height = (vals[1]*100/sum +'%').toString();
-            document.getElementById('theta').style.height = (vals[2]*100/sum +'%').toString();
+            document.getElementById('gamma').style.height = (vals[2]*100/sum +'%').toString();
+            document.getElementById('theta').style.height = (vals[3]*100/sum +'%').toString();
 
 
 
@@ -168,12 +211,13 @@ export class AppComponent implements OnInit {
 
         }, 50);
         setInterval(function(){
-          var vals = [x.getAlpha(),x.getBeta(),x.getTheta()];
-          var sum = vals[0]+vals[2]+vals[1];
+            var vals = [x.getAlpha(),x.getBeta(), x.getGamma(), x.getTheta()];
+            var sum = vals[0]+vals[2]+vals[1]+vals[3];
           
           ref.alpha.push(vals[0]/sum);
           ref.beta.push(vals[1]/sum);
-          ref.theta.push(vals[2]/sum);
+          ref.gamma.push(vals[2]/sum);
+          ref.theta.push(vals[3]/sum);
           var now = new Date();
           ref.time.push(now.getTime());
         },100);

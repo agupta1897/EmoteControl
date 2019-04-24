@@ -22,7 +22,7 @@ export class MainComponent implements OnInit {
       }
       
       
-      title = 'drowsyDriver';
+      title = 'emoteControl';
     
     
       poll: Function = function(x){

@@ -89,7 +89,7 @@ export default class eegLoad {
         return this.theta;
     }
     getGamma(){
-        return this.theta;
+        return this.gamma;
     }
     getDelta(){
         return this.delta

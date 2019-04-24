@@ -13,11 +13,12 @@
   </mat-toolbar> -->
 
 
+
   <div class="root">
       <div id="divMainPage">
       <div class="row" >
-      
-        <div class="col-12" id="main-panel">
+          
+        <div class="col-5" id="main-panel">
           <div class="info-card">
               <div style="text-align:center">
                   <button id="btnConnectToMuse" class="center-button" color="primary" mat-fab disableRipple="true"> Connect To Muse </button>
@@ -34,10 +35,67 @@
                 </div>
                 
                 <div style="text-align:center">
-                    <button id= "btnStopDriving" style="margin-top: 10px; width: 95%; min-width: 30px; font-size: 20px; display: none; background-color: #e53935" color="Red" mat-flat-button> You're mellow </button>
+                    <button id= "btnStopDriving" style="margin-top: 10px; width: 95%; min-width: 30px; font-size: 20px; display: none; background-color: #e53935" color="Red" mat-flat-button> Stop Emoting </button>
                  </div>
           </div>
           
+          </div>
+
+          <div class="col-7" id="emote-panel">
+            <div class="info-card">
+                <div style="text-align:center">
+                    <mat-form-field>
+                        <mat-label>Select an Emotion</mat-label>
+                        <mat-select required [(value)]="selectedEmotion">
+                          <mat-option value="Angry">Angry >:(</mat-option>
+                          <mat-option value="Distracted">Distracted ??</mat-option>
+                          <mat-option value="Mellow">Mellow :'(</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <br>
+                      <mat-form-field>
+                          <mat-label>Select Intensity</mat-label>
+                          <mat-select required [(value)]="selectedIntensity">
+                           
+                            <mat-option value="High">High</mat-option>
+                            <mat-option value="Medium">Medium</mat-option>
+                            <mat-option value="Low">Low</mat-option>               
+                          </mat-select>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field>
+                            <mat-label  >Select Action</mat-label>
+                            <mat-select required [(value)]="selectedAction">
+                              <mat-option value="Text">Text </mat-option>
+                              <mat-option value="Call">Call</mat-option>
+                              <mat-option value="Notify">Notify</mat-option>  
+                              <mat-option value="Music">Play me Music</mat-option>             
+
+                            </mat-select>
+                          </mat-form-field>
+                          <br>
+                          <div style="text-align:center">
+                              <button id= "btnSave" style="margin-top: 10px; width: 95%; min-width: 30px; font-size: 20px; background-color: #e53935" color="Red" mat-flat-button> Save </button>
+                              <audio id="audio" src="../assets/CheerUp.mp3" ></audio>
+                            </div>
+                           <button id= "btnMakeMusicPlay" style="margin-top: 10px; width: 95%; min-width: 30px; font-size: 20px;"  color="Red" mat-flat-button> PlayMusic </button>
+                           <button id= "btnMakeSMS" style="margin-top: 10px; width: 95%; min-width: 30px; font-size: 20px; background-color: #e53935" color="Red" mat-flat-button> <a id="linkSMS" href= [smsCode]>Send a SMS message</a>
+
+                           </button>
+                              <mat-form-field class="example-full-width">
+                                  <span matPrefix>+1 &nbsp;</span>
+                                  <input  [(ngModel)] = "smsNumber" type="tel" matInput placeholder="Telephone">
+                                  <mat-icon matSuffix>mode_edit</mat-icon>
+                                </mat-form-field>
+
+                                <mat-form-field class="example-full-width">
+                                    <textarea   [(ngModel)] = "smsText" matInput placeholder="Leave a comment"></textarea>
+                                  </mat-form-field>
+                                  
+                           <ol>
+                              <li *ngFor="let element of tasks">{{element.emotion}}, {{element.action}}</li>
+                           </ol>
+              </div>    
           </div>
         </div>
         <div class="row" width="100%">
@@ -50,12 +108,18 @@
                       <div role="progressbar" style="height: 95%;" class="progress-bar" id="alpha"></div>
                     </div>
                     <div class="progress vertical">
-                      <div role="progressbar" style="height: 50%;" class="progress-bar progress-bar-secondary" id="beta"></div>
+                      <div role="progressbar" style="height: 95%;" class="progress-bar progress-bar-secondary" id="beta"></div>
                     </div>
+ 		    <div class="progress vertical">
+                      <div role="progressbar" style="height: 95%;" class="progress-bar" id="gamma"></div>
+                    </div>
+ 	<!--	    <div class="progress vertical">
+                      <div role="progressbar" style="height: 95%;" class="progress-bar" id="delta"></div>
+                    </div> -->
                      <div class="progress vertical">
-                      <div role="progressbar" style="height: 85%;" class="progress-bar progress-bar-default;" id="theta"></div>
+                      <div role="progressbar" style="height: 95%;" class="progress-bar progress-bar-default;" id="theta"></div>
                     </div><br/>
-                    α&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;β&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;θ&nbsp;&nbsp;
+                    α&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;β&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;γ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;θ&nbsp;&nbsp;
                 </div>
          </div>
       </div>
@@ -66,6 +130,8 @@
           <div id="wavedata-panel" class="info-card" style="margin-top: 10px;display: none;padding-left: 10px;padding-right: 10px; width: 100%" >
               Alpha (Sleep) : <span id='alphaVal' > </span> <br>
               Beta (Active): <span id='betaVal'> </span> <br>
+	      Gamma (Cognition): <span id='gammaVal'> </span> <br>
+	   <!--   Delta (Deep Sleep): <span id='deltaVal'> </span> <br> -->
               Theta (Relaxed): <span id='thetaVal' > </span> 
           </div>
         </div>
