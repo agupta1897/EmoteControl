@@ -63,7 +63,7 @@ export class AppComponent implements OnInit {
       }
       document.getElementById("btnSave").onclick = function(){
         var x: task = { emotion: ref.selectedEmotion , action: ref.selectedAction, intensity: ref.selectedIntensity };
-        ref.tasks.push( x);
+        ref.tasks.push(x);
       }
 
       var ref = this;
@@ -76,6 +76,9 @@ export class AppComponent implements OnInit {
         document.getElementById("data-panel").style.display = 'inline';
         document.getElementById("others-panel").style.display = 'inline';
         document.getElementById("others-panel").style.display = 'inline';
+        document.getElementById("emote-panel").style.display = 'inline';
+
+
         document.getElementById("wavedata-panel").style.display = 'block'; //Dont change
 
       }   
@@ -85,6 +88,10 @@ export class AppComponent implements OnInit {
         audio.play();
       }
 
+      document.getElementById("btnMakeSMS").onclick = function () {  
+        var a = <HTMLAnchorElement> document.getElementById('linkSMS'); 
+        a.href = "sms://+" + ref.smsNumber + "?body=" + ref.smsText;
+      }
 
       
       document.getElementById("btnStopDriving").onclick = function () {  
