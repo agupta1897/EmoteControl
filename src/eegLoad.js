@@ -109,10 +109,24 @@ export default class eegLoad {
 }
 
     getState(){
-        if(this.alpha > this.eng2){
-            if(this.eng2> this.eng3) return 3;
-            return 2;
-        }
-        return 1;
+        if(getAnger() < 0.5 && (getAnger() > getDistracted() && getAnger() > getMellow()))
+return 1;
+	else if(getAnger() > 0.5 && this.getAnger() < 0.75 && (this.getAnger() > this.getDistracted() && this.getAnger() > this.getMellow()))
+return 2;
+	else if(this.getAnger() > 0.75 && (this.getAnger() > this.getDistracted() && this.getAnger() > this.getMellow()))
+return 3;
+        else if(this.geDistracted() < 0.5 && (this.getDistracted() > this.getAnger() && this.getDistracted() > this.getMellow()))
+return 4;
+	else if(this.getDistracted() > 0.5 && this.getDistracted() < 0.75 && (this.getDistracted() > this.getAnger() && this.getDistracted() > this.getMellow()))
+return 5;
+	else if(this.getDistracted() > 0.75 && (this.getDistracted() > this.getAnger() && this.getDistracted() > this.getMellow()))
+return 6;
+        else if(this.getMellow() < 0.5 && (this.getMellow() > this.getDistracted() && this.getMellow() > this.getAnger()))
+		return 7;
+	else if(this.getMellow() > 0.5 && this.getMellow() < 0.75 && (this.getMellow() > this.getDistracted() && this.getMellow() > this.getAnger()))
+		return 8;
+	else if(this.getMellow() > 0.75 && (this.getMellow() > this.getDistracted() && this.getMellow() > this.getAnger()))
+		return 9;
+        return 0;
     }
 }
