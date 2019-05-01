@@ -184,15 +184,16 @@ export class AppComponent implements OnInit {
             document.getElementById('betaVal').innerText =  " " + Number((vals[1]).toFixed(3)).toString();
             document.getElementById('gammaVal').innerText =  " " + Number((vals[2]).toFixed(3)).toString();
             document.getElementById('thetaVal').innerText =  " " + Number((vals[3]).toFixed(3)).toString();
- 	    document.getElementById('anger').innerText =  " " + Number((x.getAnger()*50/100).toFixed(3)).toString();
-	    document.getElementById('mellow').innerText =  " " + Number(x.getMellow().toFixed(3)).toString();
-	    document.getElementById('distracted').innerText =  " " + Number(x.getDistracted().toFixed(3)).toString();
+ 	    // document.getElementById('anger').innerText =  " " + Number((x.getAnger()*50/100).toFixed(3)).toString();
+	    // document.getElementById('mellow').innerText =  " " + Number(x.getMellow().toFixed(3)).toString();
+	    // document.getElementById('distracted').innerText =  " " + Number(x.getDistracted().toFixed(3)).toString();
             
             if(sum == 0) sum =1;
             document.getElementById('alpha').style.height = (vals[0]*100/sum +'%').toString();
             document.getElementById('beta').style.height = (vals[1]*100/sum +'%').toString();
             document.getElementById('gamma').style.height = (vals[2]*100/sum +'%').toString();
             document.getElementById('theta').style.height = (vals[3]*100/sum +'%').toString();
+
 
             document.getElementById('anger').style.height = (x.getAnger()*50 +'%').toString();
             document.getElementById('mellow').style.height = (x.getMellow()*95 +'%').toString();
@@ -252,6 +253,7 @@ export class AppComponent implements OnInit {
         }
 
         displayOtherDriverImage: Function = function(x : number) {
+          console.log(x.toString());
           
           if(x == 1)
           {

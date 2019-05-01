@@ -97,21 +97,20 @@ export default class eegLoad {
     getEngagement(){
         return this.engagement;
     }
-
     getAnger(){
 	return this.beta + (1-this.theta);
     }
     getDistracted(){
 	return this.beta + this.gamma;
-}
+    }
     getMellow(){
 	return this.theta;
 }
 
     getState(){
-        if(getAnger() < 0.5 && (getAnger() > getDistracted() && getAnger() > getMellow()))
+        if(this.getAnger() < 0.5 && (this.getAnger() > getDistracted() && this.getAnger() > getMellow()))
 return 1;
-	else if(getAnger() > 0.5 && this.getAnger() < 0.75 && (this.getAnger() > this.getDistracted() && this.getAnger() > this.getMellow()))
+	else if(this.getAnger() > 0.5 && this.getAnger() < 0.75 && (this.getAnger() > this.getDistracted() && this.getAnger() > this.getMellow()))
 return 2;
 	else if(this.getAnger() > 0.75 && (this.getAnger() > this.getDistracted() && this.getAnger() > this.getMellow()))
 return 3;
