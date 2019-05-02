@@ -1,4 +1,3 @@
-
 <!-- <mat-toolbar class="topbar" color="primary">
     <mat-toolbar-row  style="text-align: center" class="shadow">
       <span>EmoteControl</span>
@@ -14,155 +13,243 @@
 
 
 
-  <div class="root">
-      <div id="divMainPage">
-      <div class="row" >
-          
-        <div class="col-5" id="main-panel">
-          <div class="info-card">
-              <div style="text-align:center">
-                  <button id="btnConnectToMuse" class="center-button" color="primary" mat-fab disableRipple="true"> Connect To Muse </button>
-                  <button id="btnStartDriving" class="center-button" style="background-color: #76d275; display: none" color="primary" mat-fab disableRipple="true"> Begin Emoting! </button>
-                  <div id="divImgHappy" style="text-align: center; display: none;">
-                      <img style="width: 200px; height: 200px;" class="keyImg" src="../assets/Happy.png">
-                  </div>
-                  <div id="divImgSick" style="text-align: center; display: none; max-width: 256px; max-height: 256px">
-                      <img style="width: 200px; height: 200px;" class="keyImg" src="../assets/sick-face.png">
-                  </div>
-                  <div id="divImgNeutral" style="text-align: center; display: none; ">
-                      <img style="width: 200px; height: 200px;" class="keyImg" src="../assets/neutral-face.png">
-                  </div>
+<div class="root">
+  <div id="divMainPage">
+    <div class="row">
+
+      <div class="col-5" id="main-panel">
+        <div class="info-card">
+          <div style="text-align:center">
+            <button id="btnConnectToMuse" class="center-button" color="primary" mat-fab disableRipple="true"> Connect To
+              Muse </button>
+            <button id="btnStartDriving" class="center-button" style="background-color: #76d275; display: none"
+              color="primary" mat-fab disableRipple="true"> Begin Emoting! </button>
+            <div id="divAnger1" style="text-align: center; display: none;">
+              <img style="width: 200px; height: 200px;" class="keyImg" src="../assets/Anger1.jpg">
+            </div>
+            <div id="divAnger2" style="text-align: center; display: none; max-width: 256px; max-height: 256px">
+              <img style="width: 200px; height: 200px;" class="keyImg" src="../assets/Anger2.jpg">
+            </div>
+            <div id="divAnger3" style="text-align: center; display: none; ">
+              <img style="width: 200px; height: 200px;" class="keyImg" src="../assets/Anger3.jpg">
+            </div>
+            <div id="divMellow1" style="text-align: center; display: none;">
+              <img style="width: 200px; height: 200px;" class="keyImg" src="../assets/mellow1.png">
+            </div>
+            <div id="divMellow2" style="text-align: center; display: none; max-width: 256px; max-height: 256px">
+              <img style="width: 200px; height: 200px;" class="keyImg" src="../assets/mellow2.png">
+            </div>
+            <div id="divMellow3" style="text-align: center; display: none; ">
+              <img style="width: 200px; height: 200px;" class="keyImg" src="../assets/mellow3.png">
+            </div>
+
+            <div id="divDis1" style="text-align: center; display: none;">
+              <img style="width: 200px; height: 200px;" class="keyImg" src="../assets/distracted1.jpg">
+            </div>
+            <div id="divDis2" style="text-align: center; display: none; max-width: 256px; max-height: 256px">
+              <img style="width: 200px; height: 200px;" class="keyImg" src="../assets/distracted2.jfif">
+            </div>
+            <div id="divDis3" style="text-align: center; display: none; ">
+              <img style="width: 200px; height: 200px;" class="keyImg" src="../assets/distracted3.png">
+            </div>
+            <div id="divnotSure" style="text-align: center; display: none; ">
+              <img style="width: 200px; height: 200px;" class="keyImg" src="../assets/notSure.png">
+            </div>
+<br>
+
+
+            <div  id = "divState" style=" display: none;">
+              <br>
+              State: <span id='stateVal'> </span>
+              <br>
+            </div>
+            <br>
+
+          </div>
+          <div style="text-align:center">
+            <button id="btnStopDriving"
+              style="margin-top: 10px; width: 95%; min-width: 30px; font-size: 20px; display: none; background-color: #76d275"
+              color="Red" mat-flat-button> Stop Emoting </button>
+          </div>
+
+          <div id="divBarGraphs" style="text-align:center; display: none;">
+            <div class="demo-preview" style="height: 80%;padding-bottom: 0px;padding-top: 0px;">
+              <div class="progress vertical">
+                <div role="progressbar" style="height: 95%;" class="progress-bar" id="alpha"></div>
+              </div>
+              <div class="progress vertical">
+                <div role="progressbar" style="height: 95%;" class="progress-bar progress-bar-secondary" id="beta">
                 </div>
-                
-                <div style="text-align:center">
-                    <button id= "btnStopDriving" style="margin-top: 10px; width: 95%; min-width: 30px; font-size: 20px; display: none; background-color: #e53935" color="Red" mat-flat-button> Stop Emoting </button>
-                 </div>
-          </div>
-          
-          </div>
-
-          <div class="col-7" id="emote-panel"  style=" display: none;">
-            <div class="info-card">
-                <div style="text-align:center">
-                    <mat-form-field>
-                        <mat-label>Select an Emotion</mat-label>
-                        <mat-select required [(value)]="selectedEmotion">
-                          <mat-option value="Angry">Angry >:(</mat-option>
-                          <mat-option value="Distracted">Distracted ??</mat-option>
-                          <mat-option value="Mellow">Mellow :'(</mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                      <br>
-                      <mat-form-field>
-                          <mat-label>Select Intensity</mat-label>
-                          <mat-select required [(value)]="selectedIntensity">
-                           
-                            <mat-option value="High">High</mat-option>
-                            <mat-option value="Medium">Medium</mat-option>
-                            <mat-option value="Low">Low</mat-option>               
-                          </mat-select>
-                        </mat-form-field>
-                        <br>
-                        <mat-form-field>
-                            <mat-label  >Select Action</mat-label>
-                            <mat-select required [(value)]="selectedAction">
-                              <mat-option value="Text">Text </mat-option>
-                              <mat-option value="Call">Call</mat-option>
-                              <mat-option value="Notify">Notify</mat-option>  
-                              <mat-option value="Music">Play me Music</mat-option>             
-
-                            </mat-select>
-                          </mat-form-field>
-                          <br>
-                          <div style="text-align:center">
-                              <button id= "btnSave" style="margin-top: 10px; width: 95%; min-width: 30px; font-size: 20px; background-color: #e53935" color="Red" mat-flat-button> Save </button>
-                              <audio id="audio" src="../assets/CheerUp.mp3" ></audio>
-                            </div>
-                           <button id= "btnMakeMusicPlay" style="margin-top: 10px; width: 95%; min-width: 30px; font-size: 20px;"  color="Red" mat-flat-button> PlayMusic </button>
-                           <a id="linkSMS" href= [smsCode]><button id= "btnMakeSMS" style="margin-top: 10px; width: 95%; min-width: 30px; font-size: 20px; background-color: #e53935" color="Red" mat-flat-button>  Send a SMS message</button>
-                           </a>
-
-                              <mat-form-field class="example-full-width">
-                                  <span matPrefix>+1 &nbsp;</span>
-                                  <input  [(ngModel)] = "smsNumber" type="tel" matInput placeholder="Telephone">
-                                  <mat-icon matSuffix>mode_edit</mat-icon>
-                                </mat-form-field>
-
-                                <mat-form-field class="example-full-width">
-                                    <textarea   [(ngModel)] = "smsText" matInput placeholder="Text Message Content"></textarea>
-                                  </mat-form-field>
-                                  
-                           <ol>
-                              <li *ngFor="let element of tasks">{{element.emotion}}, {{element.action}}, {{element.Intensity}}</li>
-                           </ol>
-              </div>    
-          </div>
-        </div>
-        <div class="row" width="100%">
-          <div style="display: block"  id="data-panel"  style=" display: none; width: 43%; height: 100%; padding-right: 1%">
-         
-          <div class="info-card" id = "values-panel" style="height:100%; padding-left: 0px;padding-right: 0px; margin-right: 5px; margin-left: 10px">
-                
-                <div class="demo-preview" style="height: 80%;padding-bottom: 0px;padding-top: 0px;">
-                    <div class="progress vertical">
-                      <div role="progressbar" style="height: 95%;" class="progress-bar" id="alpha"></div>
-                    </div>
-                    <div class="progress vertical">
-                      <div role="progressbar" style="height: 95%;" class="progress-bar progress-bar-secondary" id="beta"></div>
-                    </div>
- 		    <div class="progress vertical">
-                      <div role="progressbar" style="height: 95%;" class="progress-bar" id="gamma"></div>
-                    </div>
- 	<!--	    <div class="progress vertical">
+              </div>
+              <div class="progress vertical">
+                <div role="progressbar" style="height: 95%;" class="progress-bar" id="gamma"></div>
+              </div>
+              <!--	    <div class="progress vertical">
                       <div role="progressbar" style="height: 95%;" class="progress-bar" id="delta"></div>
                     </div> -->
-                     <div class="progress vertical">
-                      <div role="progressbar" style="height: 95%;" class="progress-bar progress-bar-default;" id="theta"></div>
-                    </div>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                     <div class="progress vertical">
-                      <div role="progressbar" style="height: 95%;" class="progress-bar progress-bar-default;" id="anger"></div>
-                    </div>
-                     <div class="progress vertical">
-                      <div role="progressbar" style="height: 95%;" class="progress-bar progress-bar-default;" id="distracted"></div>
-                    </div>
-                     <div class="progress vertical">
-                      <div role="progressbar" style="height: 95%;" class="progress-bar progress-bar-default;" id="mellow"></div>
-                    </div><br/>
-                    α&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;β&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;γ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;θ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m
+              <div class="progress vertical">
+                <div role="progressbar" style="height: 95%;" class="progress-bar progress-bar-default;" id="theta">
                 </div>
-         </div>
-      </div>
-      <div style="display: block; width: 47%">
-        <div  id="others-panel" style=" display: none;  margin-bottom: 10px; width: 100% ">
-           
-          </div>
-          <div id="wavedata-panel" class="info-card" style="margin-top: 10px;display: none;padding-left: 10px;padding-right: 10px; width: 100%" >
-              Alpha (Sleep) : <span id='alphaVal' > </span> <br>
-              Beta (Active): <span id='betaVal'> </span> <br>
-	      Gamma (Cognition): <span id='gammaVal'> </span> <br>
-     <!--   Delta (Deep Sleep): <span id='deltaVal'> </span> <br> -->
-     Anger (Sleep) : <span id='angerVal' > </span> <br>
-     Mellow (Active): <span id='mellowVal'> </span> <br>
-      Distraction: <span id='distractedVal'> </span> <br>
-              Theta (Relaxed): <span id='thetaVal' > </span> <br>
-              State: <span id='xVal' > </span> 
+              </div>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <div class="progress vertical">
+                <div role="progressbar" style="height: 95%;" class="progress-bar progress-bar-default;" id="anger">
+                </div>
+              </div>
+              <div class="progress vertical">
+                <div role="progressbar" style="height: 95%;" class="progress-bar progress-bar-default;" id="distracted">
+                </div>
+              </div>
+              <div class="progress vertical">
+                <div role="progressbar" style="height: 95%;" class="progress-bar progress-bar-default;" id="mellow">
+                </div>
+              </div><br />
+              α&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;β&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;γ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;θ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;M
 
+            </div>
+
+          </div>
+          <div style="text-align:center">
+          <div id="divValues" style="text-align:center;  display: none;">
+            <br>
+            Alpha (Sleep) : <span id='alphaVal'> </span> <br>
+              Beta (Active): <span id='betaVal'> </span> <br>
+              Gamma (Cognition): <span id='gammaVal'> </span> <br>
+              Theta (Relaxed): <span id='thetaVal'> </span> <br> <br> 
+            
+              Anger  : <span id='angerVal'> </span> <br>
+              Distraction: <span id='distractedVal'> </span> <br>  
+              Mellow : <span id='mellowVal'> </span> <br>
+              
+              
+          </div>
+        </div>
+        </div>       
+      </div>
+
+      <div class="col-7" id="emote-panel" style=" display: none;">
+        <div class="info-card">
+          <div style="text-align:center; font-size: 13">
+            <H2> Add Trigger Actions for Emotions here: </H2>
+            <mat-form-field>
+              <mat-label>Select an Emotion</mat-label>
+              <mat-select required [(value)]="selectedEmotion">
+                <mat-option value="Angry">Angry >:(</mat-option>
+                <mat-option value="Distracted">Distracted ??</mat-option>
+                <mat-option value="Mellow">Mellow :'(</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <mat-label>Select Intensity</mat-label>
+              <mat-select required [(value)]="selectedIntensity">
+
+                <mat-option value="High">High</mat-option>
+                <mat-option value="Medium">Medium</mat-option>
+                <mat-option value="Low">Low</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <mat-label>Select Action</mat-label>
+              <mat-select required [(value)]="selectedAction">
+                <mat-option value="Text">Text </mat-option>
+                <mat-option value="Call">Call</mat-option>
+                <mat-option value="Notify">Notify</mat-option>
+                <mat-option value="Music">Play me Music</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+          
+
+            <mat-form-field class="example-full-width"  style="min-width:250px;">
+              <span matPrefix>+1 &nbsp;</span>
+              <input [(ngModel)]="smsNumber" type="tel" matInput placeholder="Call \ SMS Number">
+              <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+              <br>
+            <mat-form-field class="example-full-width" style="min-width:250px;">
+              <textarea [(ngModel)]="smsText" matInput placeholder="SMS \ Notification Content"></textarea>
+            </mat-form-field>
+
+            <br>
+            <div style="text-align:center">
+              <button id="btnSave"
+                style="margin-top: 10px; min-width: 200px; min-height: 60px; font-size: 20px; background-color: #76d275"
+                color="Red" mat-flat-button> Add Trigger </button>
+              
+            </div>
+
+            <div style="display: none">
+              <button id="btnMakeMusicPlay" style=" margin-top: 10px; width: 95%; min-width: 30px; font-size: 20px;"
+              color="Red" mat-flat-button> PlayMusic </button>
+              <audio id="audio" src="../assets/CheerUp.mp3"></audio>
+            <a id="linkSMS" href=[smsCode]><button id="btnMakeSMS"
+                style="margin-top: 10px; width: 70%; min-width: 30px; font-size: 20px; background-color: #76d275"
+                color="Red" mat-flat-button> Send a SMS message</button>
+            </a>
+            <a id="linkCall" href="tel:+1800229933"></a>
+            </div>
+            <br>
+          
+
+            <section class="example-section">
+               <h4> Toogle Switch to Enable Triggers --> 
+              <mat-slide-toggle class="example-margin"  color= "warn" [(ngModel)]="actionEnabled">
+              </mat-slide-toggle>
+            </h4> 
+            
+            </section>
+            <ol>
+              <li style="font-size: 20px" *ngFor="let element of tasks">Emotion: {{element.emotion}} || Intensity: {{element.intensity}} ||
+                Action: {{element.action}}</li>
+            </ol>
           </div>
         </div>
       </div>
-    </div>
-       
-        
 
 
-    
-<!-- <div style="text-align:center">
+
+
+
+      <!-- <div class="row" width="100%">
+        <div style="display: block" id="data-panel" style=" display: none; width: 43%; height: 100%; padding-right: 1%">
+
+          <div class="info-card" id="values-panel"
+            style="height:100%; padding-left: 0px;padding-right: 0px; margin-right: 5px; margin-left: 10px">
+
+          
+          </div>
+          <div style="display: block; width: 47%">
+            <div id="others-panel" style=" display: none;  margin-bottom: 10px; width: 100% ">
+
+            </div>
+            <div id="wavedata-panel" class="info-card"
+              style="margin-top: 10px;display: none;padding-left: 10px;padding-right: 10px; width: 100%">
+              Alpha (Sleep) : <span id='alphaVal'> </span> <br>
+              Beta (Active): <span id='betaVal'> </span> <br>
+              Gamma (Cognition): <span id='gammaVal'> </span> <br>
+                 Delta (Deep Sleep): <span id='deltaVal'> </span> <br>
+              Anger (Sleep) : <span id='angerVal'> </span> <br>
+              Mellow (Active): <span id='mellowVal'> </span> <br>
+              Distraction: <span id='distractedVal'> </span> <br>
+              Theta (Relaxed): <span id='thetaVal'> </span> <br>
+              State: <span id='xVal'> </span>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+
+
+
+
+      <!-- <div style="text-align:center">
 
   <button id="connect">Connect</button> <br/>
   <button type="button" onclick="alert('Follow instructions')">Click The Red Button Above to connect to the MUSE! </button>b -->
-  <!-- <h2>The MUSE headset will be able to determine your level of engagement in 3 stages: </h2>
+      <!-- <h2>The MUSE headset will be able to determine your level of engagement in 3 stages: </h2>
 <ul>
   <li>
     <font color="green">GREEN: You are engaged and focused on the road.</font>
@@ -180,4 +267,4 @@
 
 
 
-<router-outlet></router-outlet>
+      <router-outlet></router-outlet>
