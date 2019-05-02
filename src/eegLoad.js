@@ -1,3 +1,4 @@
+import { random } from 'd3';
 
 
 export default class eegLoad {
@@ -97,34 +98,37 @@ export default class eegLoad {
     getEngagement(){
         return this.engagement;
     }
+
+//These waits are not perfect but need to be improved
+
     getAnger(){
-	return this.beta + (1-this.theta);
+	return (this.beta + (1-this.theta))*0.5;
     }
     getDistracted(){
-	return this.beta + this.gamma;
+	return (this.beta + this.gamma)* 0.95;
     }
     getMellow(){
-	return this.theta;
+	return this.theta * 0.95;
 }
 
     getState(){
-        if(this.getAnger() < 0.5 && (this.getAnger() > getDistracted() && this.getAnger() > getMellow()))
+        if(this.getAnger() < 0.4 && (this.getAnger() > this.getDistracted()*2 && this.getAnger() > this.getMellow() *1.5))
 return 1;
-	else if(this.getAnger() > 0.5 && this.getAnger() < 0.75 && (this.getAnger() > this.getDistracted() && this.getAnger() > this.getMellow()))
+    else if(this.getAnger() > 0.4 && this.getAnger() < 0.5 && (this.getAnger() > this.getDistracted()*2  && this.getAnger() > this.getMellow()*2))
 return 2;
-	else if(this.getAnger() > 0.75 && (this.getAnger() > this.getDistracted() && this.getAnger() > this.getMellow()))
+	else if(this.getAnger() > 0.5 && (this.getAnger() > this.getDistracted()*2 && this.getAnger() > this.getMellow()*1.5))
 return 3;
-        else if(this.geDistracted() < 0.5 && (this.getDistracted() > this.getAnger() && this.getDistracted() > this.getMellow()))
+        else if(this.getDistracted() < 0.1 && (this.getDistracted() *2 > this.getAnger() && this.getDistracted() > this.getMellow()))
 return 4;
-	else if(this.getDistracted() > 0.5 && this.getDistracted() < 0.75 && (this.getDistracted() > this.getAnger() && this.getDistracted() > this.getMellow()))
+	else if(this.getDistracted() > 0.1 && this.getDistracted() < 0.3 && (this.getDistracted() * 2 > this.getAnger() && this.getDistracted()*2 > this.getMellow()))
 return 5;
-	else if(this.getDistracted() > 0.75 && (this.getDistracted() > this.getAnger() && this.getDistracted() > this.getMellow()))
+	else if(this.getDistracted() > 0.3 && (this.getDistracted() * 2 > this.getAnger() && this.getDistracted() > this.getMellow()))
 return 6;
-        else if(this.getMellow() < 0.5 && (this.getMellow() > this.getDistracted() && this.getMellow() > this.getAnger()))
+        else if(this.getMellow() < 0.1 && (this.getMellow() > this.getDistracted() && this.getMellow() * 1.5 > this.getAnger()))
 		return 7;
-	else if(this.getMellow() > 0.5 && this.getMellow() < 0.75 && (this.getMellow() > this.getDistracted() && this.getMellow() > this.getAnger()))
+	else if(this.getMellow() > 0.1 && this.getMellow() < 0.3 && (this.getMellow() > this.getDistracted()  && this.getMellow() *1.5 > this.getAnger()))
 		return 8;
-	else if(this.getMellow() > 0.75 && (this.getMellow() > this.getDistracted() && this.getMellow() > this.getAnger()))
+	else if(this.getMellow() > 0.3 && (this.getMellow() > this.getDistracted() && this.getMellow() *1.5 > this.getAnger()))
 		return 9;
         return 0;
     }

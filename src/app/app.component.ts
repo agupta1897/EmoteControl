@@ -178,15 +178,16 @@ export class AppComponent implements OnInit {
       poll: Function = function(x){
         var ref = this;
         setInterval(function(){
-            var vals = [x.getAlpha(),x.getBeta(), x.getGamma(), x.getTheta()];
+            var vals = [x.getAlpha(),x.getBeta(), x.getGamma(), x.getTheta(), x.getAnger(), x.getMellow(), x.getDistracted()];
             var sum = vals[0]+vals[2]+vals[1]+vals[3];
+
             document.getElementById('alphaVal').innerText =  " " + Number((vals[0]).toFixed(3)).toString();
             document.getElementById('betaVal').innerText =  " " + Number((vals[1]).toFixed(3)).toString();
             document.getElementById('gammaVal').innerText =  " " + Number((vals[2]).toFixed(3)).toString();
             document.getElementById('thetaVal').innerText =  " " + Number((vals[3]).toFixed(3)).toString();
- 	    // document.getElementById('anger').innerText =  " " + Number((x.getAnger()*50/100).toFixed(3)).toString();
-	    // document.getElementById('mellow').innerText =  " " + Number(x.getMellow().toFixed(3)).toString();
-	    // document.getElementById('distracted').innerText =  " " + Number(x.getDistracted().toFixed(3)).toString();
+            document.getElementById('angerVal').innerText =  " " + Number((vals[4]).toFixed(3)).toString();
+            document.getElementById('mellowVal').innerText =  " " + Number(vals[5].toFixed(3)).toString();
+            document.getElementById('distractedVal').innerText =  " " + Number(vals[6].toFixed(3)).toString();
             
             if(sum == 0) sum =1;
             document.getElementById('alpha').style.height = (vals[0]*100/sum +'%').toString();
@@ -195,11 +196,12 @@ export class AppComponent implements OnInit {
             document.getElementById('theta').style.height = (vals[3]*100/sum +'%').toString();
 
 
-            document.getElementById('anger').style.height = (x.getAnger()*50 +'%').toString();
-            document.getElementById('mellow').style.height = (x.getMellow()*95 +'%').toString();
-            document.getElementById('distracted').style.height = (x.getDistracted()*95 +'%').toString();
+            document.getElementById('anger').style.height = (vals[4] +'%').toString();
+            document.getElementById('mellow').style.height = (vals[5] +'%').toString();
+            document.getElementById('distracted').style.height = (vals[6] +'%').toString();
 
              let y  = x.getState();
+             document.getElementById('xVal').innerText = y;
              document.getElementById("divImgHappy").style.display = 'none';
              document.getElementById("divImgSick").style.display = 'none';
              document.getElementById("divImgNeutral").style.display = 'none';
