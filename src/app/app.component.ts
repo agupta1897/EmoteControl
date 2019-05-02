@@ -192,6 +192,8 @@ export class AppComponent implements OnInit {
       var vals = [x.getAlpha(), x.getBeta(), x.getGamma(), x.getTheta(), x.getAnger(), x.getMellow(), x.getDistracted()];
       var sum = vals[0] + vals[2] + vals[1] + vals[3];
 
+      var sum1 = vals[4] + vals[5] + vals[6];
+
       document.getElementById('alphaVal').innerText = " " + Number((vals[0]).toFixed(3)).toString();
       document.getElementById('betaVal').innerText = " " + Number((vals[1]).toFixed(3)).toString();
       document.getElementById('gammaVal').innerText = " " + Number((vals[2]).toFixed(3)).toString();
@@ -206,10 +208,10 @@ export class AppComponent implements OnInit {
       document.getElementById('gamma').style.height = (vals[2] * 100 / sum + '%').toString();
       document.getElementById('theta').style.height = (vals[3] * 100 / sum + '%').toString();
 
-
-      document.getElementById('anger').style.height = (vals[4] + '%').toString();
-      document.getElementById('mellow').style.height = (vals[5] + '%').toString();
-      document.getElementById('distracted').style.height = (vals[6] + '%').toString();
+      if (sum1 == 0) sum1 = 1;
+      document.getElementById('anger').style.height = (vals[4] * 100/sum1 + '%').toString();
+      document.getElementById('mellow').style.height = (vals[5] * 100/sum1+ '%').toString();
+      document.getElementById('distracted').style.height = (vals[6] *100/sum1 + '%').toString();
 
       let y = x.getState();
       let z = ref.getTaskForId(y);
